@@ -19,7 +19,6 @@
     <li>
     <p>Validacia emailu pomocou zaslaneho mailu</p>
     </li>
-    
 
     <h3>To má ešte času a času</h3>
 

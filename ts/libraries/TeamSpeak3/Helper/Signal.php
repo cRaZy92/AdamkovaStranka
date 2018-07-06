@@ -44,9 +44,6 @@ class TeamSpeak3_Helper_Signal
 
   /**
    * Emits a signal with a given set of parameters.
-   * 
-   * @todo: Confirm / fix $return is set to last $slot->call() return value.
-   *      It appears all previous calls before last are lost / ignored.
    *
    * @param  string $signal
    * @param  mixed  $params
@@ -78,7 +75,7 @@ class TeamSpeak3_Helper_Signal
    *
    * @param  mixed  $callback
    * @param  string
-   * @return string
+   * @return void
    */
   public function getCallbackHash($callback)
   {
@@ -174,7 +171,7 @@ class TeamSpeak3_Helper_Signal
    */
   public function getHandlers($signal)
   {
-    if($this->hasHandlers($signal))
+    if(!$this->hasHandlers($signal))
     {
       return $this->sigslots[$signal];
     }
@@ -190,7 +187,7 @@ class TeamSpeak3_Helper_Signal
    */
   public function clearHandlers($signal)
   {
-    if($this->hasHandlers($signal))
+    if(!$this->hasHandlers($signal))
     {
       unset($this->sigslots[$signal]);
     }

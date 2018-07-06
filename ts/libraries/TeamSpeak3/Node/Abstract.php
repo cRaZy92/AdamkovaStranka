@@ -206,11 +206,6 @@ abstract class TeamSpeak3_Node_Abstract implements RecursiveIterator, ArrayAcces
       $html .= $viewer->fetchObject($node, $siblings);
     }
 
-    if(empty($html) && method_exists($viewer, "toString"))
-    {
-      return $viewer->toString();
-    }
-
     return $html;
   }
 

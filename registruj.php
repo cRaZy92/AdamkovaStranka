@@ -20,7 +20,7 @@ $hashed_password = password_hash($heslo, PASSWORD_DEFAULT); //hash hesla - zabez
 $riadok = mysqli_fetch_array($vysledok_pk);
     $pk_osoba = $riadok['pk_osoba'];
     if(!$pk_osoba)
-    $pk_osoba = 1;
+    $pk_osoba = 1; //plati len pre prvý registrovaný zaznam pri vkaldaní login informácii
     
 // vloženie login informacii do tb_uzivatel
     $registruj_login = mysqli_query($db_spojenie, "INSERT INTO

@@ -23,8 +23,6 @@
  */
 
 /**
- * @todo: Replace this class with native encryption
- *
  * @class TeamSpeak3_Helper_Crypt
  * @brief Helper class for data encryption.
  */

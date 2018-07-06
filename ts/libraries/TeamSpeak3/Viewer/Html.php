@@ -43,7 +43,7 @@ class TeamSpeak3_Viewer_Html implements TeamSpeak3_Viewer_Interface
   protected $currObj = null;
 
   /**
-   * An array filled with siblings for the TeamSpeak3_Node_Abstract object which is currently
+   * An array filled with siblingsfor the  TeamSpeak3_Node_Abstract object which is currently
    * processed.
    *
    * @var array
@@ -274,10 +274,6 @@ class TeamSpeak3_Viewer_Html implements TeamSpeak3_Viewer_Interface
           break;
       }
     }
-    elseif($this->currObj instanceof TeamSpeak3_Node_Client && $this->currObj->client_is_recording)
-    {
-      $extras .= " recording";
-    }
 
     return "corpus " . $this->currObj->getClass(null) . $extras;
   }
@@ -348,24 +344,16 @@ class TeamSpeak3_Viewer_Html implements TeamSpeak3_Viewer_Interface
       $before = array();
       $behind = array();
 
-      if(!$this->currObj->client_is_recording)
+      foreach($this->currObj->memberOf() as $group)
       {
-        foreach($this->currObj->memberOf() as $group)
+        if($group->getProperty("namemode") == TeamSpeak3::GROUP_NAMEMODE_BEFORE)
         {
-          if($group->getProperty("namemode") == TeamSpeak3::GROUP_NAMEMODE_BEFORE)
-          {
-            $before[] = "[" . htmlspecialchars($group["name"]) . "]";
-          }
-          elseif($group->getProperty("namemode") == TeamSpeak3::GROUP_NAMEMODE_BEHIND)
-          {
-            $behind[] = "[" . htmlspecialchars($group["name"]) . "]";
-          }
+          $before[] = "[" . htmlspecialchars($group["name"]) . "]";
         }
-      }
-      else
-      {
-        $before[] = "***";
-        $behind[] = "*** [RECORDING]";
+        elseif($group->getProperty("namemode") == TeamSpeak3::GROUP_NAMEMODE_BEHIND)
+        {
+          $behind[] = "[" . htmlspecialchars($group["name"]) . "]";
+        }
       }
 
       return implode("", $before) . " " . htmlspecialchars($this->currObj) . " " . implode("", $behind);

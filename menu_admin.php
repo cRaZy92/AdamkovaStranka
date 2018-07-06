@@ -19,13 +19,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" href="db_ucivo.php"><i class="fas fa-code"></i> Učivo</a>
-          </li>
-
-          <li class="divider-vertical"></li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
+            <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj nám odkaz</a>
           </li>
           
           <li class="divider-vertical"></li>

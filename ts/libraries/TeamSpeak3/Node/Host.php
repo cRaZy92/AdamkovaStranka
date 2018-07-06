@@ -362,17 +362,16 @@ class TeamSpeak3_Node_Host extends TeamSpeak3_Node_Abstract
    * Stops the virtual server specified by ID.
    *
    * @param  integer $sid
-   * @param  string  $msg
    * @return void
    */
-  public function serverStop($sid, $msg = null)
+  public function serverStop($sid)
   {
     if($sid == $this->serverSelectedId())
     {
       $this->serverDeselect();
     }
 
-    $this->execute("serverstop", array("sid" => $sid, "reasonmsg" => $msg));
+    $this->execute("serverstop", array("sid" => $sid));
     $this->serverListReset();
 
     TeamSpeak3_Helper_Signal::getInstance()->emit("notifyServerstopped", $this, $sid);
@@ -381,14 +380,13 @@ class TeamSpeak3_Node_Host extends TeamSpeak3_Node_Abstract
   /**
    * Stops the entire TeamSpeak 3 Server instance by shutting down the process.
    *
-   * @param  string $msg
    * @return void
    */
-  public function serverStopProcess($msg = null)
+  public function serverStopProcess()
   {
     TeamSpeak3_Helper_Signal::getInstance()->emit("notifyServershutdown", $this);
 
-    $this->execute("serverprocessstop", array("reasonmsg" => $msg));
+    $this->execute("serverprocessstop");
   }
 
   /**
@@ -1164,3 +1162,4 @@ class TeamSpeak3_Node_Host extends TeamSpeak3_Node_Abstract
     return (string) $this->getAdapterHost();
   }
 }
+

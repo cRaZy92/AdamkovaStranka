@@ -6,25 +6,19 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            
+
         <li class="divider-vertical"></li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" href="db_ucivo.php"><i class="fas fa-code"></i> Učivo</a>
-          </li>
-
-          <li class="divider-vertical"></li>
 
           <li class="nav-item">
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
           </li>
-          
+
           <li class="divider-vertical"></li>
 
           <li class="nav-item">
             <a class="nav-link text-light" href="db_forum.php"><i class="fab fa-stack-exchange"></i> Fórum</a>
           </li>
-          
+
         </ul>
 
         <div class="nav-item dropdown" id="user_menu">
