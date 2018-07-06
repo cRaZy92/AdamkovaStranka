@@ -10,16 +10,31 @@
 
       <?php
         $nick = $_SESSION['nick'];
-        $img_path = 'images/'.$nick.'.';
+        $img_path = 'images/'.$nick;
 
-        if(file_exists($img_path.'png')){
-            $img_path = 'images/'.$nick.'.'.'png';
+        if(file_exists("images/adamko.png")){
+            echo "EZ";
+            
+
+            $path_parts = pathinfo("images/adamko.png");
+
+            echo $path_parts['dirname'], "\n";
+            echo $path_parts['basename'], "\n";
+            echo $path_parts['extension'], "\n";
+            echo $path_parts['filename'], "\n";
+
             ?>
             <img src=<?php echo "$img_path"; ?> class="avatar img-circle img-thumbnail" alt="avatar">
             <?php
             $custom_img = 1;
+
+        }
+        else{
+
+            echo "NOPE!";
         }
 
+/*
         if (file_exists($img_path.'jpg')){
             $img_path = 'images/'.$nick.'.'.'jpg';
             ?>
@@ -35,6 +50,7 @@
             <?php
             $custom_img = 1;
         }
+*/
 
         //ak nie je uploadnuty vlastny obrazok uzivatela
         if(!isset($custom_img)){

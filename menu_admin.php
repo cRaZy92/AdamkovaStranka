@@ -19,6 +19,12 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link text-light" href="ts_test.php"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
+          </li>
+          
+          <li class="divider-vertical"></li>
+
+          <li class="nav-item">
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj nám odkaz</a>
           </li>
           
