@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(isset($_SESSION['signed_in']))
 {
     $titulok="Chyba!";
@@ -9,87 +10,32 @@ if(isset($_SESSION['signed_in']))
 }
 else
 {
+    $title="Prihlásenie";
+    include "html_hlavicka.php";
+    
+    if(isset($_POST['login'])){
+        require "db_pripojenie.php";
 
-$titulok="Prihlásenie";
-include "html_hlavicka.php";
+        $nick = htmlspecialchars($_POST['nick']);
+        $password = htmlspecialchars($_POST['heslo']);
 
-require "form_prihlasenie.php";
-
-if(isset($_COOKIE['nick']) && isset($_COOKIE['password'])) { //ak su ulozene cookies, automaticky prihlasi
-    $nick = $_COOKIE['nick'];
-    $password = $_COOKIE['password'];
-    require "db_pripojenie.php";
-    $sql = "SELECT 
-        pk_uzivatel, nick, heslo
-    FROM
-        tb_uzivatel
-    WHERE
-        nick ='$nick'";
-     
-$vysledok = mysqli_query($db_spojenie, $sql);
-if(!$vysledok)
-{
-echo 'Skus znova. Chyba:';
-echo mysql_error();
+if($heslo != $heslo_z) {
+    echo "Heslá sa nezhoduju";
+    $reg_error = 1;
 }
-else
-{
-if(mysqli_num_rows($vysledok) == 0) 
-{
-echo 'Zle meno alebo heslo. Skús to znova, alebo sa <a href="db_registracia.php">registruj</a>.'; //ak sa nenasla ziadna zhoda v databaze
-}
-else
-{
-    $riadok = mysqli_fetch_array($vysledok);
-    $hashed_password = $riadok['heslo'];
-    if(password_verify($password, $hashed_password) == true) {  //kontrola zhody hesla s heslom v databaze 
-    $_SESSION['nick']    = $riadok['nick'];
-    $_SESSION['pk_uzivatel']    = $riadok['pk_uzivatel'];
-    $_SESSION['signed_in'] = true;  //uzivatel je prihlaseny
-    $id = $_SESSION['pk_uzivatel'];
+else 
+    $reg_error = 0;
 
-    $sql_udaje = mysqli_query($db_spojenie, "SELECT meno,priezvisko,pohlavie,adresa,telefon,dat_registracie,email,fk_mesto FROM tb_osoba WHERE pk_osoba='$id'");
-        $osobne_udaje = mysqli_fetch_array($sql_udaje);
-        $pk_mesto = $osobne_udaje['fk_mesto'];
-        
-        $vysledok_mesto = mysqli_query($db_spojenie, "SELECT mesto,psc FROM tb_mesto WHERE pk_mesto='$pk_mesto'");
-        $riadok_mesto = mysqli_fetch_array($vysledok_mesto);
-
-        //prevzatie udajov o pouzivatelovi z databazy a ulozenie do session
-        $_SESSION['meno'] = $osobne_udaje['meno'];
-        $_SESSION['priezvisko'] = $osobne_udaje['priezvisko'];
-        $_SESSION['pohlavie'] = $osobne_udaje['pohlavie'];
-        $_SESSION['adresa'] = $osobne_udaje['adresa'];
-        $_SESSION['telefon'] = $osobne_udaje['telefon'];
-        $_SESSION['email'] = $osobne_udaje['email'];
-        $_SESSION['mesto'] = $riadok_mesto['mesto'];
-        $_SESSION['psc'] = $riadok_mesto['psc'];
-        $_SESSION['dat_registracie'] = $osobne_udaje['dat_registracie'];
-
-    $sql_update_last = "UPDATE
-        tb_uzivatel
-    SET 
-        last_login = NOW()
-    WHERE
-        pk_uzivatel = '$id'";
-
-$last_login = mysqli_query($db_spojenie, $sql_update_last);
-
-if(!$last_login)
-    echo "ERROR: Nepodarilo sa zapísať čas posledného loginu!";
-
-        echo '<script> location.replace("index.php"); </script>';
-    }
-}
-}
+    //zkontroluje validnost emailu
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "Neplatný formát emailu.";
+    $reg_error = 1;
 }
 
-if (isset($_POST['ok'])){
-    require "db_pripojenie.php";
+    
        
     //prevzatie informacii z formulara
-    $nick = $_POST['nick'];
-    $password = $_POST['heslo'];
+    
      
     //hladanie uzivatela v databaze podla nicku
     $sql = "SELECT 
@@ -168,6 +114,100 @@ else
     echo "Nesprávne heslo! Skús to znovu.";
 }
 }
+require "form_prihlasenie.php";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(isset($_COOKIE['nick']) && isset($_COOKIE['password'])) { //ak su ulozene cookies, automaticky prihlasi  //presunut do hlavicky
+    $nick = $_COOKIE['nick'];
+    $password = $_COOKIE['password'];
+    require "db_pripojenie.php";
+    $sql = "SELECT 
+        pk_uzivatel, nick, heslo
+    FROM
+        tb_uzivatel
+    WHERE
+        nick ='$nick'";
+     
+$vysledok = mysqli_query($db_spojenie, $sql);
+if(!$vysledok)
+{
+echo 'Skus znova. Chyba:';
+echo mysql_error();
+}
+else
+{
+if(mysqli_num_rows($vysledok) == 0) 
+{
+echo 'Zle meno alebo heslo. Skús to znova, alebo sa <a href="db_registracia.php">registruj</a>.'; //ak sa nenasla ziadna zhoda v databaze
+}
+else
+{
+
+
+
+
+
+    $riadok = mysqli_fetch_array($vysledok);
+    $hashed_password = $riadok['heslo'];
+    if(password_verify($password, $hashed_password) == true) {  //kontrola zhody hesla s heslom v databaze 
+    $_SESSION['nick']    = $riadok['nick'];
+    $_SESSION['pk_uzivatel']    = $riadok['pk_uzivatel'];
+    $_SESSION['signed_in'] = true;  //uzivatel je prihlaseny
+    $id = $_SESSION['pk_uzivatel'];
+
+    $sql_udaje = mysqli_query($db_spojenie, "SELECT meno,priezvisko,pohlavie,adresa,telefon,dat_registracie,email,fk_mesto FROM tb_osoba WHERE pk_osoba='$id'");
+        $osobne_udaje = mysqli_fetch_array($sql_udaje);
+        $pk_mesto = $osobne_udaje['fk_mesto'];
+        
+        $vysledok_mesto = mysqli_query($db_spojenie, "SELECT mesto,psc FROM tb_mesto WHERE pk_mesto='$pk_mesto'");
+        $riadok_mesto = mysqli_fetch_array($vysledok_mesto);
+
+        //prevzatie udajov o pouzivatelovi z databazy a ulozenie do session
+        $_SESSION['meno'] = $osobne_udaje['meno'];
+        $_SESSION['priezvisko'] = $osobne_udaje['priezvisko'];
+        $_SESSION['pohlavie'] = $osobne_udaje['pohlavie'];
+        $_SESSION['adresa'] = $osobne_udaje['adresa'];
+        $_SESSION['telefon'] = $osobne_udaje['telefon'];
+        $_SESSION['email'] = $osobne_udaje['email'];
+        $_SESSION['mesto'] = $riadok_mesto['mesto'];
+        $_SESSION['psc'] = $riadok_mesto['psc'];
+        $_SESSION['dat_registracie'] = $osobne_udaje['dat_registracie'];
+
+    $sql_update_last = "UPDATE
+        tb_uzivatel
+    SET 
+        last_login = NOW()
+    WHERE
+        pk_uzivatel = '$id'";
+
+$last_login = mysqli_query($db_spojenie, $sql_update_last);
+
+if(!$last_login)
+    echo "ERROR: Nepodarilo sa zapísať čas posledného loginu!";
+
+        echo '<script> location.replace("index.php"); </script>';
+    }
+}
+}
+}
+
+
     if($db_spojenie) mysqli_close($db_spojenie);
 }
 }

@@ -8,11 +8,11 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="db_prihlasenie.php">Prihlásiť sa</a>
+            <a class="nav-link" href="login.php">Prihlásiť sa</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="db_registracia.php">Registrovať sa</a>
+            <a class="nav-link" href="signup.php">Registrovať sa</a>
           </li>
         </ul>
     </div>

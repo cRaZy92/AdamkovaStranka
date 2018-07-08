@@ -26,7 +26,10 @@ include "html_hlavicka.php";
         echo "<br>";
         print_r($_SESSION);   //vypise vsetko zo session
         */
+        echo "<br>";
+        echo '<input type="submit" class="btn btn-success" name="info" value="info">';
 
+        if(isset($_POST['info'])){
         try{
             require_once("ts/libraries/TeamSpeak3/TeamSpeak3.php");
             // connect to server, authenticate and grab info
@@ -72,6 +75,7 @@ include "html_hlavicka.php";
             catch(Exception $e){
             echo "<p class='server_error'> ERROR: </p>" , $e->getMessage(), "\n";
             }
+        }
         ?>
       </div>
 
