@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['signed_in'])){
-    $titulok="Chyba!";
+    $title="Chyba!";
     include "html_hlavicka.php";
     include "body_start.php";
     echo 'Už si prihláseny! <a href="index.php">Klikni sem pre návrat.</a>'; 
@@ -69,7 +69,7 @@ if (isset($_POST['registruj'])){
 if (!$registruj)   //kontrola pribehu zapisu do databazy
     die ('Chyba zaslania príkazu do databazy pri registracii'  . mysqli_error($db_spojenie));
 else {  //uspešná registrácia
-    header('URL=login.php');   //prepoji na login.php
+    header('location: login.php');   //prepoji na login.php
    $_SESSION['n_user'] = true;
 }   //uspesná registrácia
 if ($db_spojenie) mysqli_close($db_spojenie);   //odpojenie z databazy
@@ -78,7 +78,7 @@ if ($db_spojenie) mysqli_close($db_spojenie);   //odpojenie z databazy
             /* Form register */
 ?>
 <form class="form-signin" action="register.php" method="post">
-    <img class="mb-4" src="https://openclipart.org/download/185270/Light-Bulb-Icon.svg" width="72" height="72">
+    <img class="mb-4" src="img/a_logo_inverted_edit.jpg" width="128" height="128">
       <h1 class="h3 mb-3 font-weight-normal">Registruj sa</h1>
         <input type="text" name="nick" class="form-control" placeholder="Nick" minlength="3" maxlength="10" required autofocus>
         <input type="email" name="email" class="form-control" placeholder="Emailová adresa" minlength="5" maxlength="40" required>

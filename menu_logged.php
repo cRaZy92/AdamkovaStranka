@@ -30,8 +30,6 @@
   }
 ?>
 
-          
-
           <li class="nav-item">
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
           </li>
@@ -39,7 +37,7 @@
           <li class="divider-vertical"></li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" href="db_forum.php"><i class="fab fa-stack-exchange"></i> Fórum</a>
+            <a class="nav-link text-light" href="forum.php"><i class="fab fa-stack-exchange"></i> Fórum</a>
           </li>
 
         </ul>
