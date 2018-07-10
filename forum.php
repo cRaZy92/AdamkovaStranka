@@ -17,7 +17,7 @@ include "html_hlavicka.php";
 
 require "db_pripojenie.php";
 
-if(isset($_POST['vlozit_post'])){  //ak uzivatel chce vlozit novú otázku
+if(isset($_POST['vloz_post'])){  //ak uzivatel chce vlozit novú otázku
         $otazka = $_POST['post'];
         $id = $_SESSION['user_id'];
 
@@ -46,7 +46,7 @@ else
         <p>Zostavajuci počet znakov: <span ng-bind="left()"></span></p>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn btn-success" name="vloz_otazku">Odoslať</button>
+          <button type="submit" class="btn btn btn-success" name="vloz_post">Odoslať</button>
           </form>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Zrušiť</button>
         </div>

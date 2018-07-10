@@ -13,9 +13,11 @@ $date_u = $date_u->format('d. m. Y H:i');
 ?>
 <form action="forum_comment.php" method="post"> <!-- začiatok formu na odoslanie ID otazky -->  
 <div class="box">
-  <div>    Lorem ipsum... asdasdasda das das dasjsdnfsdnfn sdn fnsd fnsdn fsidn fsdnfi sdf</div>
+  <div>   <?php echo $jedna_otazka['post']; ?></div>
   <div class="push"><button type="submit" class="float-right btn-success" name="post_id" value="<?php echo $jedna_otazka['post_id']; ?>">Zobraziť komentáre</button></div>
-  <div>  Napísal <a href='profil_other.php?id_uzivatel=<?php echo $id_uzivatela_o; ?>'><?php echo $nick_uzivatela_o; ?></a> <span style="">dňa <?php echo $date_u; ?></span></div>
+  <div>
+    Napísal <a href='profile_other.php?id_uzivatel=<?php echo $id_uzivatela_o; ?>'><?php echo $nick_uzivatela_o; ?></a> <span style="font-size:12px">dňa <?php echo $date_u; ?></span>
+  </div>
 </div>
 </form>
 <hr>
