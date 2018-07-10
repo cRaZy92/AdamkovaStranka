@@ -40,20 +40,16 @@ if (isset($_POST['registruj'])){
      
     $vysledok_nick = mysqli_query($db_spojenie, "SELECT nick FROM users WHERE nick ='$nick'");
     
-    if(!$vysledok_nick){
-    echo 'Skus znova. Chyba:';
-    echo mysql_error();
-    }
+    if(!$vysledok_nick)
+        echo 'Skus znova. Chyba:' . mysql_error();
     else{
         if(mysqli_num_rows($vysledok_nick) != 0)    // kontrola nicku - nick je volny
-            {
-                echo "Nick sa už používa! Zvoľ si prosím iný.";
-            }
+            echo "Nick sa už používa! Zvoľ si prosím iný.";
         else
-        $reg_error = 0;
+            $reg_error = 0;
     }
-    print_r($heslo);
-    print_r($heslo_z);
+    //print_r($heslo);
+    //print_r($heslo_z);
     if($reg_error == 0) {
         $hashed_password = password_hash($heslo, PASSWORD_DEFAULT); //hash hesla - zabezpečenie
         // vloženie udajov o pouzivatelovi do databazy

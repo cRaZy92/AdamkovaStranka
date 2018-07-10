@@ -47,7 +47,7 @@ else
                     setcookie('nick_email', $nick_email, time() + (86400 * 30));
                     setcookie('password', $password, time() + (86400 * 30));
                     }
-
++
             $_SESSION['user_id'] = $user_login['user_id'];
             $_SESSION['nick'] = $user_login['nick'];
             
@@ -59,7 +59,6 @@ else
             $login_error = 1;
     }
  }
-
     if($db_spojenie) mysqli_close($db_spojenie);
 }
 //formular pre prihlasenie

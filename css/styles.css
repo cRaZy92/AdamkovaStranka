@@ -213,4 +213,14 @@ border-bottom:2px dashed #337AB7;
 .divider-vertical {
   height: 0px;
   margin: 0 6px;
-  }
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: darkgrey;
+}
+.push {
+    margin-left: auto;
+}

@@ -3,24 +3,19 @@ $date = $jedna_otazka['date'];
 $date_u = DateTime::createFromFormat('Y-m-d H:i:s', $date);
 $date_u = $date_u->format('d. m. Y H:i');
 
-?>
-
-<div class="media text-muted pt-3"> <!-- orámovanie celej otázky -->
-    <img src="img/img_avatar_m.png" alt="" class="mr-2 rounded" width="38" height="38"> <!-- možno raz obrázok uživateľa -->
-    <form action="forum_comment.php" method="post"> <!-- začiatok formu na odoslanie ID otazky -->  
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-
-            <strong class="d-block text-gray-dark"><span style="font-size:15px"><a href='profil_other.php?id_uzivatel=<?php echo $id_uzivatela_o; ?>'><?php echo $nick_uzivatela_o; ?></a></span> <span style="font-size:10px"><?php echo $date_u; ?></span></strong><!-- Hlavička otázky (meno uživateľa) -->
-            
-            <big><?php echo $jedna_otazka['post']; ?></big> <!-- telo otázky -->
-            <button type="submit" class="float-right" name="post_id" value="<?php echo $jedna_otazka['post_id']; ?>">Zobraziť komentáre</button>    
-        </p>
-    </form> 
-</div>
- <!--
+/*
 <div class="d-flex align-items-start flex-column" style="height: 200px;">
   <div class="mb-auto p-2">Flex item</div>
   <div class="p-2">Flex item</div>
   <div class="p-2">Flex item</div>
 </div>
--->
+*/
+?>
+<form action="forum_comment.php" method="post"> <!-- začiatok formu na odoslanie ID otazky -->  
+<div class="box">
+  <div>    Lorem ipsum... asdasdasda das das dasjsdnfsdnfn sdn fnsd fnsdn fsidn fsdnfi sdf</div>
+  <div class="push"><button type="submit" class="float-right btn-success" name="post_id" value="<?php echo $jedna_otazka['post_id']; ?>">Zobraziť komentáre</button></div>
+  <div>  Napísal <a href='profil_other.php?id_uzivatel=<?php echo $id_uzivatela_o; ?>'><?php echo $nick_uzivatela_o; ?></a> <span style="">dňa <?php echo $date_u; ?></span></div>
+</div>
+</form>
+<hr>

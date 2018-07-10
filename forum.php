@@ -29,6 +29,7 @@ if (!$db_uloz_otazku) {
 else
     header('location: forum.php');     //uspesne vlozenie do db
 }
+
     //forum form na vkladanie otazok
 ?>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -66,7 +67,6 @@ else
   });
   </script>
 
-
 <body class="bg-light">
 
 <main role="main" class="container">
@@ -93,6 +93,7 @@ $otazky = mysqli_query($db_spojenie, "SELECT post_id, user_id, post, date FROM f
 if(mysqli_num_rows($otazky) == 0) 
     echo "Zatiaľ žiadne otázky.";   //ak neexistuju ziadne otazky v db 
 else{
+    echo "<br>";
 while($jedna_otazka = mysqli_fetch_array($otazky)) //vypisuje vsetky otazky v db 
 {
     $user_id_o = $jedna_otazka['user_id'];
@@ -132,14 +133,6 @@ switch($p_otazok){
         $otazka = "$p_otazok otázok."; 
 }
 
-/*
-if($p_otazok == 0 || $p_otazok >= 5){
-    $otazka = "$p_otazok otázok.";  
-}
-else{
-    $otazka = "$p_otazok otázky.";
-}
-*/
 echo str_replace("##p_otazok##", $otazka, ob_get_clean());
 if($db_spojenie) mysqli_close($db_spojenie);
 ?>

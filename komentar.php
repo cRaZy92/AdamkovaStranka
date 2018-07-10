@@ -17,3 +17,13 @@
     <p><?php echo $jeden_komentar['komentar']; ?></p>
   </div>
 </div>
+
+
+<!--
+<div class="box">
+  <div><img src="img/img_avatar_m.png" alt="" class="mr-2 rounded" width="64" height="64"></div>
+  <div>Lorem ipsum... asdasdasda das das dasjsdnfsdnfn sdn fnsd fnsdn fsidn fsdnfi sdf</div>
+  <div class="push">Four</div>
+</div>
+<hr>
+-->
