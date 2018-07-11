@@ -15,25 +15,25 @@
       <li class="nav-item dropdown">
             <button class="btn btn-link dropdown-toggle text-white" type="button" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span  style="font-size:18px"><i class="fas fa-user-tie"></i> Admin</span></button>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="todo.php">To-Do List</a>
+                    <a class="dropdown-item" href="https://github.com/cRaZy92/AdamkovaStranka/projects/1" target="blank">To-Do List</a>
                     <a class="dropdown-item  disabled" href="">Odkazy</a>
                     <a class="dropdown-item" href="db_users.php">All users</a>
                 </div>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link text-light" href="ts_test.php"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
+          <li class="nav-item disabled">
+            <a class="nav-link text-mute" href="#"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
           </li>
 
           <li class="divider-vertical"></li>
           <?php
   }
 ?>
-
+<!--
           <li class="nav-item">
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
           </li>
-
+-->
           <li class="divider-vertical"></li>
 
           <li class="nav-item">

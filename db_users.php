@@ -30,7 +30,7 @@ if(isset($_POST['zmaz'])){
 */
 
 echo "<br>";
-$uzivatelia = mysqli_query($db_spojenie, 'SELECT pk_uzivatel, nick, last_login FROM tb_uzivatel ORDER BY pk_uzivatel ASC');
+$uzivatelia = mysqli_query($db_spojenie, 'SELECT user_id, nick, last_login FROM users ORDER BY user_id ASC');
 
 if (!$uzivatelia) 
 die ('Chyba zaslania príkazu SQL'  . mysqli_error($db_spojenie));
@@ -50,7 +50,7 @@ while($jeden_uzivatel = mysqli_fetch_array($uzivatelia)) {
 ?>
     <tbody>
       <tr>
-        <td><?php echo $jeden_uzivatel['pk_uzivatel']; ?></td>
+        <td><?php echo $jeden_uzivatel['user_id']; ?></td>
         <td><?php echo $jeden_uzivatel['nick']; ?></td>
         <td><?php echo $jeden_uzivatel['last_login']; ?></td>
         

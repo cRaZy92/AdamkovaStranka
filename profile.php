@@ -7,7 +7,7 @@ if(!isset($_SESSION['signed_in']))
     die;
 }
 
-    $titulok="Profil";
+    $title="Profil";
     include "html_hlavicka.php";
     require "db_pripojenie.php";
         $id = $_SESSION['user_id'];
@@ -79,23 +79,22 @@ if(!isset($_SESSION['signed_in']))
     
             <?php
             $sql_otazky = "SELECT 
-                id_otazky
+                post_id
             FROM
-                tb_otazky
+                forum_posts
             WHERE
                 user_id ='$id'";
          
     $vsetky_otazky = mysqli_query($db_spojenie, $sql_otazky);
     $p_otazok = mysqli_num_rows($vsetky_otazky);
-    
-    $sql_komentare = "SELECT 
-                id_otazky_k
-            FROM
-                tb_komentare
-            WHERE
-                user_id ='$id'";
          
-    $vsetky_komentare = mysqli_query($db_spojenie, $sql_komentare);
+    $vsetky_komentare = mysqli_query($db_spojenie, 
+    "SELECT 
+        post_id_c
+    FROM
+        forum_comments
+    WHERE
+        user_id ='$id'");
     $p_komentarov = mysqli_num_rows($vsetky_komentare);
     
     
@@ -111,7 +110,7 @@ if(!isset($_SESSION['signed_in']))
               <h6 class="text-center">Dátum registrácie: <?php echo $date_u; ?></h6>
               <br>
               <div class="text-center">
-              <button onclick="location.href = 'profil_edit.php';" class="btn btn-primary">Upraviť profil</button>
+              <button onclick="location.href = 'profile_edit.php';" class="btn btn-primary">Upraviť profil</button>
             </div> 
               
             </div><!--/col-3-->
@@ -125,7 +124,7 @@ if(!isset($_SESSION['signed_in']))
                               
                               <div class="col-xs-6">
                                   <label for="first_name"><h4>Meno a priezvisko</h4></label>
-                                  <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['meno'] . " " . $_SESSION['priezvisko']; ?></p>
+                                  <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['name'] . " " . $_SESSION['surname']; ?></p>
                                   <hr>
                               </div>
                           </div>
@@ -136,42 +135,25 @@ if(!isset($_SESSION['signed_in']))
                                   <hr>
                               </div>
                           </div>
-              
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                  <label for="phone"><h4>Telefónne číslo</h4></label>
-                                  <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['telefon']; ?></p>
-                                  <hr>
-                              </div>
-                          </div>
-              
+
                           <div class="form-group">
                               <div class="col-xs-6">
                                  <label for="mobile"><h4>Pohlavie</h4></label>
-                                 <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['pohlavie']; ?></p>
+                                 <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['gender']; ?></p>
                                  <hr>
                               </div>
                             
                           </div>
+
                           <div class="form-group">
-                              
                               <div class="col-xs-6">
-                                  <label for="email"><h4>Mesto a PSČ</h4></label>
-                                  <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['mesto'] . ", " . $_SESSION['psc']; ?></p>
-                                  <hr>
+                                 <label for="mobile"><h4>TeamSpeak nick</h4></label>
+                                 <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['ts_nick']; ?></p>
+                                 <hr>
                               </div>
-    
+                            
                           </div>
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                  <label for="email"><h4>Adresa</h4></label>
-                                  <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $_SESSION['adresa']; ?></p>
-                              </div>
-    
-                          </div>
-                  <hr>
+              
                   
                 </div><!--/tab-pane-->               
             

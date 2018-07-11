@@ -7,9 +7,8 @@ if(isset($_SESSION['signed_in'])){
     include "body_start.php";
     echo 'Už si prihláseny! <a href="index.php">Klikni sem pre návrat.</a>'; 
     include "body_end.php";
+    die;
 }
-else
-{
 $title="Registrácia";
 include "html_hlavicka.php";
 echo '<body class="text-center">';
@@ -85,7 +84,7 @@ if ($db_spojenie) mysqli_close($db_spojenie);   //odpojenie z databazy
       <button class="btn btn-lg btn-success btn-block" type="submit" name="registruj">Registrovať</button>
 </form>
 <?php
-}
+
 include "body_end.php";
 include "html_pata.php";
 ?>

@@ -6,10 +6,11 @@ if(isset($_SESSION['signed_in']))
     $title="Chyba!";
     include "html_hlavicka.php";
     include "body_start.php";
-    echo 'Už si prihláseny! <a href="index.php">Klikni sem pre návrat.</a>'; 
+    echo 'Už si prihláseny! <a href="index.php">Klikni sem pre návrat.</a>';
+    include "body_end.php";
+    include "html_pata.php";
+    die; 
 }
-else
-{
     $title="Prihlásenie";
     include "html_hlavicka.php";
     
@@ -23,7 +24,7 @@ else
     //hladanie uzivatela v databaze podla nicku alebo emailu
     $vysledok = mysqli_query($db_spojenie, 
     "SELECT 
-        user_id, nick, password, name, surname, gender, email, reg_date
+        user_id, nick, password, name, surname, ts_nick, gender, email, reg_date
     FROM
         users
     WHERE
@@ -49,8 +50,60 @@ else
                     }
 +
             $_SESSION['user_id'] = $user_login['user_id'];
+            $id = $_SESSION['user_id'];
             $_SESSION['nick'] = $user_login['nick'];
+
+            if($user_login['name'] == "n")
+                $_SESSION['name'] = "Neuvedené";
+            else
+                $_SESSION['name'] = $user_login['name'];
+
+            if($user_login['surname'] == "n")
+                $_SESSION['surname'] = "Neuvedené";
+            else
+                $_SESSION['surname'] = $user_login['surname'];
             
+            switch($user_login['gender']){
+                case "n":
+                    $_SESSION['gender'] = "Neuvedené";
+                break;
+
+                case "m":
+                    $_SESSION['gender'] = "Muž";
+                break;
+
+                case "f":
+                    $_SESSION['gender'] = "Žena";
+                break;
+
+                case "o":
+                    $_SESSION['gender'] = "Iné";
+                break;
+
+                default:
+                    $_SESSION['gender'] = "Neuvedené";
+            }
+
+            if($user_login['ts_nick'] == "n")
+                $_SESSION['ts_nick'] = "Neuvedené";
+            else
+                $_SESSION['ts_nick'] = $user_login['ts_nick'];
+                
+            $_SESSION['email'] = $user_login['email'];
+            $_SESSION['reg_date'] = $user_login['reg_date'];
+    
+    $last_login = mysqli_query($db_spojenie, 
+    "UPDATE
+        users
+    SET 
+        last_login = NOW()
+    WHERE
+        user_id = '$id'");
+    
+    if(!$last_login){
+        echo "ERROR: Nepodarilo sa zapísať čas posledného loginu!";
+                    die;
+    }
             $_SESSION['signed_in'] = true;  //uzivatel je prihlaseny
             $id = $_SESSION['user_id'];
             header('location: index.php');
@@ -98,7 +151,6 @@ if(isset($_SESSION['n_user']))
       }
       echo "</form>";
     
-}
 include "html_pata.php";
 
 ?>
