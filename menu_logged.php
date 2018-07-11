@@ -21,12 +21,6 @@
                     <a class="dropdown-item" href="db_users.php">All users</a>
                 </div>
           </li>
-
-          <li class="nav-item disabled">
-            <a class="nav-link text-mute" href="#"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
-          </li>
-
-          
           <?php
   }
 ?>
@@ -37,6 +31,14 @@
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
           </li>
 -->
+
+          <li class="divider-vertical"></li>
+
+          <li class="nav-item disabled">
+            <a class="nav-link text-mute" href="#"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
+          </li>
+
+
           <li class="divider-vertical"></li>
 
           <li class="nav-item">

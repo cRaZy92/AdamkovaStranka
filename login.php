@@ -45,8 +45,7 @@ if(isset($_SESSION['signed_in']))
             
             if(isset($_POST['remember_me']) && $_POST['remember_me'] == 1){
                     $hour = time() + 3600 * 24 * 30;
-                    setcookie('nick_email', $nick_email, time() + (86400 * 30));
-                    setcookie('password', $password, time() + (86400 * 30));
+                    setcookie('signed_in', true, time() + (86400 * 30));
                     }
 +
             $_SESSION['user_id'] = $user_login['user_id'];

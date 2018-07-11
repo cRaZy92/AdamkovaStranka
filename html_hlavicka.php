@@ -27,6 +27,15 @@
             $_SESSION['admin'] = false;    
         include "menu_logged.php";
         }
-      else
-        include "menu.php";
+      else{
+        if(isset($_COOKIE['signed_in']) && $_COOKIE['signed_in'] == true){
+          $_SESSION['signed_in'] = true;
+          $_SESSION['admin'] = false; 
+        }
+        else
+          include "menu.php";
+      }
+
+
+        
 ?>

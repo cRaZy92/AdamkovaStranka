@@ -55,9 +55,9 @@ if (isset($_POST['registruj'])){
     $registruj = mysqli_query($db_spojenie, 
     "INSERT INTO
         users
-        (nick, password, name,  surname, gender, email, registration_date, last_login)
+        (nick, password, name,  surname, ts_nick, gender, email, reg_date, last_login)
     VALUES
-        ('$nick', '$hashed_password', 'n',  'n', 'n', '$email', NOW(), '0000-00-00 00:00:00')");
+        ('$nick', '$hashed_password', 'n', 'n', 'n', 'n', '$email', NOW(), '0000-00-00 00:00:00')");
     }else
         echo "Chyba!";
 
@@ -72,7 +72,7 @@ if ($db_spojenie) mysqli_close($db_spojenie);   //odpojenie z databazy
   
             /* Form register */
 ?>
-<form class="form-signin" action="register.php" method="post">
+<form class="form-signin" action="" method="post">
     <img class="mb-4" src="img/a_logo_inverted_edit.jpg" width="128" height="128">
       <h1 class="h3 mb-3 font-weight-normal">Registruj sa</h1>
         <input type="text" name="nick" class="form-control" placeholder="Nick" minlength="3" maxlength="10" required autofocus>
