@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="index.php">Domov</a>
+      <a class="navbar-brand" href="index.php"><i class="fas fa-home"></i>  Domov</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -7,11 +7,12 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
 
-        <li class="divider-vertical"></li>
+        
 
 <?php
   if($_SESSION['admin'] === true){
     ?>
+      <li class="divider-vertical"></li>
       <li class="nav-item dropdown">
             <button class="btn btn-link dropdown-toggle text-white" type="button" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span  style="font-size:18px"><i class="fas fa-user-tie"></i> Admin</span></button>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -25,11 +26,13 @@
             <a class="nav-link text-mute" href="#"><i class="fab fa-teamspeak"></i> TeamSpeak 3</a>
           </li>
 
-          <li class="divider-vertical"></li>
+          
           <?php
   }
 ?>
 <!--
+          <li class="divider-vertical"></li>
+
           <li class="nav-item">
             <a class="nav-link text-light" href="db_odkaz.php"><i class="far fa-envelope"></i> Zanechaj odkaz</a>
           </li>
