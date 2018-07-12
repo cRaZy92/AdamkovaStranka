@@ -70,7 +70,7 @@ if ($db_spojenie) mysqli_close($db_spojenie);
 include "html_pata.php";
 }
 else{
-    $titulok="Chyba!"; //ak nie tak napise chybu
+    $title="Chyba!"; //ak nie tak napise chybu
     include "html_hlavicka.php";
     include "body_start.php";
     echo "Nedostatočné práva!";

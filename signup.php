@@ -13,7 +13,6 @@ $title="Registrácia";
 include "html_hlavicka.php";
 echo '<body class="text-center">';
 
-
 if (isset($_POST['registruj'])){
     require "db_pripojenie.php";
 
@@ -47,8 +46,6 @@ if (isset($_POST['registruj'])){
         else
             $reg_error = 0;
     }
-    //print_r($heslo);
-    //print_r($heslo_z);
     if($reg_error == 0) {
         $hashed_password = password_hash($heslo, PASSWORD_DEFAULT); //hash hesla - zabezpečenie
         // vloženie udajov o pouzivatelovi do databazy

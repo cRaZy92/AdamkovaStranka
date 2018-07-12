@@ -18,7 +18,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="https://github.com/cRaZy92/AdamkovaStranka/projects/1" target="blank">To-Do List</a>
                     <a class="dropdown-item  disabled" href="">Odkazy</a>
-                    <a class="dropdown-item" href="db_users.php">All users</a>
+                    <a class="dropdown-item" href="list_users.php">All users</a>
                 </div>
           </li>
           <?php

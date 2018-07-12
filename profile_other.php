@@ -119,7 +119,7 @@ if(isset($already_requested)){
 }
 else{
 ?>
-    <form action="profil_other.php?id_uzivatel=<?php echo $id_other ?>" method="POST">
+    <form action="profile_other.php?id_uzivatel=<?php echo $id_other ?>" method="POST">
         <button type="submit" name="pridat" value="$id_other" class="btn btn-success">Pridať priateľa</button>
     </form>
 <?php
@@ -141,14 +141,30 @@ else{
                           
                           <div class="col-xs-6">
                               <label for="first_name"><h4>Meno a priezvisko</h4></label>
-                              <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $riadok_uzivatel['name'] . " " . $riadok_uzivatel['surname']; ?></p>
+                              <?php 
+                            if($riadok_uzivatel['name'] != "n")
+                                $meno = $riadok_uzivatel['name'];
+                            else    
+                                $meno = "Neuvedené"; 
+                            if($riadok_uzivatel['surname'] != "n")
+                                $priezvisko = $riadok_uzivatel['surname']; 
+                            else    
+                                $priezvisko = " ";
+
+                            if($riadok_uzivatel['ts_nick'] != "n")
+                                $ts_nick = $riadok_uzivatel['ts_nick'];
+                            else
+                                $ts_nick = "Neuvedené";
+                                    ?>
+
+                              <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $meno . " " . $priezvisko; ?></p>
                               <hr>
                           </div>
                       </div>
                       <div class="form-group">
                           <div class="col-xs-6">
                             <label for="last_name"><h4>TeamSpeak nick</h4></label>
-                            <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $riadok_uzivatel['ts_nick']; ?></p>
+                            <p style="font-size:20px"><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <?php echo $ts_nick; ?></p>
                               <hr>
                           </div>
                       </div>
